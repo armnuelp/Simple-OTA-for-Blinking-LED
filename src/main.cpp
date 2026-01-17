@@ -5,8 +5,8 @@
 #include <Update.h>
 
 // WiFi credentials
-const char* ssid = "LO";        // put your wifi name
-const char* password = "12345678"; // put your wifi password
+const char* ssid = "LO";   
+const char* password = "12345678"; 
 
 const char* firmwareUrl = "https://github.com/armnuelp/esp32firm/releases/download/esp32firm/firmware.ino.bin";
 const char* versionUrl  = "https://raw.githubusercontent.com/armnuelp/esp32firm/refs/heads/main/version.txt";
@@ -15,11 +15,6 @@ const char* versionUrl  = "https://raw.githubusercontent.com/armnuelp/esp32firm/
 const char* currentFirmwareVersion = "1.0.3";
 const unsigned long updateCheckInterval = 5 * 60 * 1000;  // 5 minutes in milliseconds
 unsigned long lastUpdateCheck = 0;
-
-// ===============================
-// Forward declarations (PROTOTYPE)
-// Wajib untuk main.cpp di PlatformIO
-// ===============================
 void connectToWiFi();
 void checkForFirmwareUpdate();
 String fetchLatestVersion();
@@ -71,7 +66,7 @@ void checkForFirmwareUpdate() {
     return;
   }
 
-  // Step 1: Fetch the latest version from GitHub
+  
   String latestVersion = fetchLatestVersion();
   if (latestVersion == "") {
     Serial.println("Failed to fetch latest version");
@@ -162,7 +157,7 @@ bool startOTAUpdate(WiFiClient* client, int contentLength) {
       size_t len = client->read(buffer, sizeof(buffer));
 
       if (len > 0) {
-        lastDataTime = millis();  // ✅ update timeout timer saat data masuk
+        lastDataTime = millis(); 
 
         Update.write(buffer, len);
         written += len;
